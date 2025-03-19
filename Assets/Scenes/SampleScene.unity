@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 39914275}
   - component: {fileID: 39914278}
   m_Layer: 5
-  m_Name: Button (Legacy)
+  m_Name: Figura1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -212,7 +212,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 912e9b00d52c96148bccb8a6eaf82642, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  figuraID: 1
+  figuraID: 0
 --- !u!1 &125486759
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,7 +282,7 @@ GameObject:
   - component: {fileID: 125486762}
   - component: {fileID: 125486761}
   m_Layer: 5
-  m_Name: Button (Legacy) (1)
+  m_Name: Figura2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -319,7 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 912e9b00d52c96148bccb8a6eaf82642, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  figuraID: 2
+  figuraID: 1
 --- !u!114 &125486762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,7 +371,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -428,7 +428,7 @@ GameObject:
   - component: {fileID: 144918676}
   - component: {fileID: 144918675}
   m_Layer: 5
-  m_Name: Button (Legacy) (2)
+  m_Name: Figura3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -465,7 +465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 912e9b00d52c96148bccb8a6eaf82642, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  figuraID: 3
+  figuraID: 2
 --- !u!114 &144918676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -517,7 +517,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -829,7 +829,7 @@ GameObject:
   - component: {fileID: 486736829}
   - component: {fileID: 486736828}
   m_Layer: 5
-  m_Name: Button (Legacy) (4)
+  m_Name: Figura5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -866,7 +866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 912e9b00d52c96148bccb8a6eaf82642, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  figuraID: 5
+  figuraID: 4
 --- !u!114 &486736829
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -913,12 +913,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 525481262}
         m_TargetAssemblyTypeName: ToucherManager, Assembly-CSharp
-        m_MethodName: SeleccionarColor
+        m_MethodName: SeleccionarFigura
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1006,11 +1006,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   figuras:
-  - {fileID: 7968499324292305484, guid: c296faffcb66f6d42bceb33107749f96, type: 3}
-  - {fileID: 8668343580391721325, guid: 97a1f524c9d5ee844a860b5eb4fcc6c6, type: 3}
-  - {fileID: 2540825584523823778, guid: 6cef8d6d699755c459b537c7e955074c, type: 3}
-  - {fileID: 2577432728381408416, guid: 85661493f1e8da044abce97883a8c5df, type: 3}
   - {fileID: 3420077582513787639, guid: f883700c8a792564eb1956c2014e2cae, type: 3}
+  - {fileID: 2577432728381408416, guid: 85661493f1e8da044abce97883a8c5df, type: 3}
+  - {fileID: 2540825584523823778, guid: 6cef8d6d699755c459b537c7e955074c, type: 3}
+  - {fileID: 8668343580391721325, guid: 97a1f524c9d5ee844a860b5eb4fcc6c6, type: 3}
+  - {fileID: 7968499324292305484, guid: c296faffcb66f6d42bceb33107749f96, type: 3}
   colores:
   - {r: 0.6, g: 0.098039225, b: 0.098039225, a: 1}
   - {r: 0.15686275, g: 0.83921576, b: 0.19607845, a: 1}
@@ -1018,8 +1018,44 @@ MonoBehaviour:
   - {r: 0.04705883, g: 0.36862746, b: 0.8705883, a: 1}
   - {r: 0.76470596, g: 0.14117648, b: 0.80392164, a: 1}
   parentCanvas: {fileID: 1584272597}
-  trailPrefab: {fileID: 3420077582513787639, guid: f883700c8a792564eb1956c2014e2cae,
+  trailImagePrefab: {fileID: 4774670961772866485, guid: 0f10257145decdf4cb9bdf08c3e1a649,
     type: 3}
+  zonaBloqueada: {fileID: 727735421}
+--- !u!1 &727735420
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 727735421}
+  m_Layer: 5
+  m_Name: Limit
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &727735421
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 727735420}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1584272597}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -0.0022583008, y: 323.42575}
+  m_SizeDelta: {x: 1920, y: 240.5685}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,7 +1119,7 @@ GameObject:
   - component: {fileID: 1236748640}
   - component: {fileID: 1236748643}
   m_Layer: 5
-  m_Name: Button (Legacy) (5)
+  m_Name: Color4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1159,7 +1195,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1214,7 +1250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a36d9dec5948f384cb3d14422a422dd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorID: 4
+  colorID: 3
 --- !u!1 &1558726254
 GameObject:
   m_ObjectHideFlags: 0
@@ -1314,6 +1350,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 727735421}
   - {fileID: 39914274}
   - {fileID: 125486760}
   - {fileID: 144918674}
@@ -1408,7 +1445,7 @@ GameObject:
   - component: {fileID: 1675460989}
   - component: {fileID: 1675460992}
   m_Layer: 5
-  m_Name: Button (Legacy)
+  m_Name: Color5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1484,7 +1521,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1539,7 +1576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a36d9dec5948f384cb3d14422a422dd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorID: 5
+  colorID: 4
 --- !u!1 &1850249490
 GameObject:
   m_ObjectHideFlags: 0
@@ -1554,7 +1591,7 @@ GameObject:
   - component: {fileID: 1850249492}
   - component: {fileID: 1850249495}
   m_Layer: 5
-  m_Name: Button (Legacy) (8)
+  m_Name: Color1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1630,7 +1667,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1685,7 +1722,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a36d9dec5948f384cb3d14422a422dd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorID: 1
+  colorID: 0
 --- !u!1 &1947355970
 GameObject:
   m_ObjectHideFlags: 0
@@ -1700,7 +1737,7 @@ GameObject:
   - component: {fileID: 1947355972}
   - component: {fileID: 1947355975}
   m_Layer: 5
-  m_Name: Button (Legacy) (6)
+  m_Name: Color3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1776,7 +1813,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 3
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1831,7 +1868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a36d9dec5948f384cb3d14422a422dd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorID: 3
+  colorID: 2
 --- !u!1 &2060492292
 GameObject:
   m_ObjectHideFlags: 0
@@ -1846,7 +1883,7 @@ GameObject:
   - component: {fileID: 2060492294}
   - component: {fileID: 2060492297}
   m_Layer: 5
-  m_Name: Button (Legacy) (7)
+  m_Name: Color2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1922,7 +1959,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1977,7 +2014,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a36d9dec5948f384cb3d14422a422dd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorID: 2
+  colorID: 1
 --- !u!1 &2074940163
 GameObject:
   m_ObjectHideFlags: 0
@@ -1992,7 +2029,7 @@ GameObject:
   - component: {fileID: 2074940165}
   - component: {fileID: 2074940168}
   m_Layer: 5
-  m_Name: Button (Legacy) (3)
+  m_Name: Figura4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2068,7 +2105,7 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -2123,7 +2160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 912e9b00d52c96148bccb8a6eaf82642, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  figuraID: 4
+  figuraID: 3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

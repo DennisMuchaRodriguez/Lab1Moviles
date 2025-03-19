@@ -5,21 +5,24 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public class ToucherManager : MonoBehaviour
 {
-    public GameObject[] figuras; // Prefabs de figuras UI
-    public Color[] colores; // Lista de colores
-    public RectTransform parentCanvas; // Canvas donde se instanciarán las figuras
-    public GameObject trailPrefab; // Prefab del Trail Renderer para Swipe
+    public GameObject[] figuras;
+    public Color[] colores;
+    public RectTransform parentCanvas;
 
-    private int colorID = 0; // ID del color seleccionado
-    private int figuraID = 0; // ID de la figura seleccionada
+    public GameObject trailImagePrefab;
+    private float trailCooldown = 0.05f;
+    private float lastTrailTime = 0f;
 
+    private int colorID = 0;
+    private int figuraID = 0;
+    public RectTransform zonaBloqueada;
     private float lastTapTime = 0;
     private GameObject objetoSeleccionado = null;
     private bool isDragging = false;
     private Vector2 lastTouchPosition;
 
-    private List<GameObject> objetosInstanciados = new List<GameObject>(); // Lista de figuras creadas
-
+    private List<GameObject> objetosInstanciados = new List<GameObject>();
+    private bool justDeleted = false;
     void Update()
     {
         if (Input.touchCount > 0)
@@ -28,16 +31,20 @@ public class ToucherManager : MonoBehaviour
             switch (touch.phase)
             {
                 case TouchPhase.Began:
-                    if (Time.time - lastTapTime < 0.3f) // Doble Tap
+                    if (Time.time - lastTapTime < 0.3f)
                     {
                         EliminarFigura(touch.position);
+                        justDeleted = true; 
                     }
                     else
                     {
                         lastTapTime = Time.time;
                         SeleccionarObjeto(touch.position);
+                        justDeleted = false; 
                     }
                     break;
+
+           
 
                 case TouchPhase.Moved:
                     if (isDragging && objetoSeleccionado != null)
@@ -47,20 +54,20 @@ public class ToucherManager : MonoBehaviour
                     break;
 
                 case TouchPhase.Ended:
-                    if (!isDragging)
+                    if (!isDragging && !justDeleted) 
                     {
                         CrearFigura(touch.position);
                     }
                     isDragging = false;
                     objetoSeleccionado = null;
+                    justDeleted = false; 
                     break;
             }
 
-            // Detectar Swipe
             if (Input.touchCount == 1 && touch.phase == TouchPhase.Moved)
             {
                 Vector2 delta = touch.position - lastTouchPosition;
-                if (delta.magnitude > 200) // Longitud mínima del swipe
+                if (delta.magnitude > 200)
                 {
                     RealizarSwipe();
                 }
@@ -81,34 +88,42 @@ public class ToucherManager : MonoBehaviour
 
     private void CrearFigura(Vector2 screenPosition)
     {
-        if (figuras.Length == 0 || colores.Length == 0 || parentCanvas == null) return;
+        if (figuras.Length == 0 || colores.Length == 0 || parentCanvas == null)
+    {
+        return;
+    }
 
-        Vector2 canvasPos;
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            parentCanvas, screenPosition, null, out canvasPos);
+ 
+    if (zonaBloqueada != null && RectTransformUtility.RectangleContainsScreenPoint(zonaBloqueada, screenPosition))
+    {
+        return; 
+    }
 
-        GameObject nuevaFigura = Instantiate(figuras[figuraID], parentCanvas);
-        RectTransform rectTransform = nuevaFigura.GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = canvasPos;
+    Vector2 canvasPos;
+    RectTransformUtility.ScreenPointToLocalPointInRectangle(parentCanvas, screenPosition, null, out canvasPos);
 
-        Image img = nuevaFigura.GetComponent<Image>();
-        if (img != null)
-        {
-            img.color = colores[colorID];
-        }
+    GameObject nuevaFigura = Instantiate(figuras[figuraID], parentCanvas);
+    RectTransform rectTransform = nuevaFigura.GetComponent<RectTransform>();
+    rectTransform.anchoredPosition = canvasPos;
 
-        objetosInstanciados.Add(nuevaFigura);
+    Image img = nuevaFigura.GetComponent<Image>();
+    if (img != null)
+    {
+        img.color = colores[colorID];
+    }
+
+    objetosInstanciados.Add(nuevaFigura);;
     }
 
     private void EliminarFigura(Vector2 screenPosition)
     {
-        foreach (GameObject obj in objetosInstanciados)
+        for (int i = 0; i < objetosInstanciados.Count; i++)
         {
-            RectTransform rectTransform = obj.GetComponent<RectTransform>();
+            RectTransform rectTransform = objetosInstanciados[i].GetComponent<RectTransform>();
             if (RectTransformUtility.RectangleContainsScreenPoint(rectTransform, screenPosition))
             {
-                objetosInstanciados.Remove(obj);
-                Destroy(obj);
+                Destroy(objetosInstanciados[i]);
+                objetosInstanciados.RemoveAt(i);
                 return;
             }
         }
@@ -116,12 +131,12 @@ public class ToucherManager : MonoBehaviour
 
     private void SeleccionarObjeto(Vector2 screenPosition)
     {
-        foreach (GameObject obj in objetosInstanciados)
+        for (int i = 0; i < objetosInstanciados.Count; i++)
         {
-            RectTransform rectTransform = obj.GetComponent<RectTransform>();
+            RectTransform rectTransform = objetosInstanciados[i].GetComponent<RectTransform>();
             if (RectTransformUtility.RectangleContainsScreenPoint(rectTransform, screenPosition))
             {
-                objetoSeleccionado = obj;
+                objetoSeleccionado = objetosInstanciados[i];
                 isDragging = true;
                 return;
             }
@@ -137,22 +152,46 @@ public class ToucherManager : MonoBehaviour
             parentCanvas, screenPosition, null, out canvasPos);
 
         objetoSeleccionado.GetComponent<RectTransform>().anchoredPosition = canvasPos;
-    }
 
+        
+        if (Time.time - lastTrailTime >= trailCooldown)
+        {
+            CrearTrailImagen(canvasPos);
+            lastTrailTime = Time.time;
+        }
+    }
+    private void CrearTrailImagen(Vector2 position)
+    {
+        GameObject trailImage = Instantiate(trailImagePrefab, parentCanvas);
+        RectTransform rectTransform = trailImage.GetComponent<RectTransform>();
+        rectTransform.anchoredPosition = position;
+
+        Image img = trailImage.GetComponent<Image>();
+        if (img != null)
+        {
+            img.color = colores[colorID];
+        }
+
+        Destroy(trailImage, 0.5f); 
+    }
     private void RealizarSwipe()
     {
-        foreach (GameObject obj in objetosInstanciados)
+       
+        for (int i = 0; i < objetosInstanciados.Count; i++)
         {
-            Destroy(obj);
+            Destroy(objetosInstanciados[i]);
         }
         objetosInstanciados.Clear();
 
-        // Instanciar un Trail Renderer con el color actual
-        if (trailPrefab != null)
+        
+        Vector2 canvasPos;
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(parentCanvas, lastTouchPosition, null, out canvasPos);
+
+       
+        for (int i = 0; i < 10; i++)
         {
-            GameObject trail = Instantiate(trailPrefab);
-            trail.GetComponent<TrailRenderer>().startColor = colores[colorID];
-            trail.GetComponent<TrailRenderer>().endColor = new Color(colores[colorID].r, colores[colorID].g, colores[colorID].b, 0);
+            Vector2 offset = new Vector2(Random.Range(-10, 10), Random.Range(-10, 10));
+            CrearTrailImagen(canvasPos + offset);
         }
     }
 }

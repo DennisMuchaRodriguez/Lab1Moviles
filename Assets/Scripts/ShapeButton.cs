@@ -13,7 +13,7 @@ public class ShapeButton : MonoBehaviour
         touchManager = FindObjectOfType<ToucherManager>();
         GetComponent<Button>().onClick.AddListener(() => touchManager.SeleccionarFigura(figuraID));
 
-        // Asignar sprite del botón según la figura seleccionada
+     
         GetComponent<Image>().sprite = touchManager.figuras[figuraID].GetComponent<Image>().sprite;
 
      

@@ -12,7 +12,7 @@ public class ColorButton : MonoBehaviour
         touchManager = FindObjectOfType<ToucherManager>();
         GetComponent<Button>().onClick.AddListener(() => touchManager.SeleccionarColor(colorID));
 
-        // Asignar color del botón según el colorID
+     
         GetComponent<Image>().color = touchManager.colores[colorID];
 
  
